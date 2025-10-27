@@ -18,6 +18,24 @@ const Home = () => {
 
   const [message, setMessage] = React.useState<string>("불러오는 중...");
 
+  const getTodayKey = () => {
+    const today = new Date();
+    return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+  };
+
+  const getTodayMessage = () => {
+    const stored = localStorage.getItem('dailyMessage');
+    if (stored) {
+      const { date, message } = JSON.parse(stored);
+      if (date === getTodayKey()) {
+        return message; 
+      }
+    }
+    return null;
+  };
+
+  const shouldFetchMessage = !getTodayMessage();
+
   const { data: messageData } = useQuery({
     queryKey: ["message", getTodayKey()], 
     queryFn: async () => {
