@@ -40,7 +40,7 @@ const Home = () => {
     queryKey: ["message", getTodayKey()], 
     queryFn: async () => {
       const res = await axios.post("http://localhost:8080/api/ai/ask", {
-        question: `취준생인 나한테 10자 내의 응원의 한마디를 해줘. 취업생 고민에 맞으면서도 감성적이면서 명언같은 글귀 딱 하나만`,
+        question: `취준생인 나한테 10자 내의 응원의 한마디를 해줘. 취업생 고민에 맞으면서도 감성적이면서 명언같은 글귀 딱 한개만 * 같은 볼드체 기호는 제거해`,
       });
       return res.data;
     },
@@ -81,7 +81,7 @@ const Home = () => {
       </div>
       <div className="relative pt-[120px] w-full mx-auto flex flex-col gap-4 justify-center items-center">
         {data?.map((user: any, idx: number) => (
-          <UserCard key={idx} name={user.name} userKey={user.userKey} />
+          <UserCard key={idx} name={user.name} userKey={user.id} />
         ))}
       </div>
     </div>
