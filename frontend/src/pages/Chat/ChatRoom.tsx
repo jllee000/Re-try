@@ -70,9 +70,8 @@ useEffect(() => {
     client.activate();
     stompClientRef.current = client;
 
-    // 🔥 여기서는 async 쓰지 마!
     return () => {
-        client.deactivate(); // ← 이건 Promise 반환하지만 React는 무시함 OK
+        client.deactivate();
     };
 }, [roomId, token]);
 
