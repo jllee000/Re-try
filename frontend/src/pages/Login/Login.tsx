@@ -16,7 +16,8 @@ const Login = () => {
     },
     onSuccess: (data) => {
       console.log("✅ 유저 생성 성공:", data);
-      navigate("/?username=" + username);
+      localStorage.setItem("userToken",data.token);
+      navigate("/?name=" + username);
     },
     onError: (error) => {
       console.error("❌ 유저 생성 실패:", error);
